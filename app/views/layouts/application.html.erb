@@ -7,9 +7,12 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+  <body>
+    <div id="flash-messages">
+      <%= render 'flash_messages' %>
+    </div> <!-- End of flash-messages -->
 
-<%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
 </html>
