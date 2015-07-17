@@ -34,7 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'figaro'
-gem 'rack-timeout-puma'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise', '~> 3.5'
 gem 'omniauth-google-oauth2'

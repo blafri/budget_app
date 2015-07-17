@@ -131,9 +131,6 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack-timeout (0.2.4)
-    rack-timeout-puma (0.0.1)
-      rack-timeout (~> 0.2, >= 0.2.0)
     rails (4.2.3)
       actionmailer (= 4.2.3)
       actionpack (= 4.2.3)
@@ -238,7 +235,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   puma
-  rack-timeout-puma
   rails (= 4.2.3)
   rails_12factor
   rspec-rails (~> 3.0)
