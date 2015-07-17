@@ -1,0 +1,35 @@
+<% flash.now[:error] = "There was an error signing up!" if devise_error_messages? %>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Sign Up</h1>
+    <div id="sign-up-panel" class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: true }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <%= form_group_tag resource.errors[:email] do %>
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+          <% end %>
+
+          <%= form_group_tag resource.errors[:password] do %>
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.submit "Sign Up", class: 'btn btn-primary btn-lg btn-block' %>
+          </div>
+        <% end %>
+        <p id="or-text" class="text-center">OR</p>
+        <hr id="or-seperator">
+        <%= link_to "Sign up with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-lg btn-block btn-danger" %>
+      </div> <!-- /.panel-body -->
+    </div> <!-- /.panel -->
+  </div> <!-- /.row -->
+  <div class="row">
+    <div class="alternate-actions text-center">
+      <%= render "devise/shared/links" %>
+    </div> <!-- /.alternate-actions -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->

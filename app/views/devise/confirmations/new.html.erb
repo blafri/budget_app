@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Resend confirmation instructions</h1>
+    <div id="resend-panel" class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, novalidate: true }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <%= form_group_tag resource.errors[:email] do %>
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, class: 'form-control', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
+          <% end %>
+
+          <div class="form-group">
+            <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary btn-lg btn-block' %>
+          </div>
+        <% end %>
+      </div> <!-- /.panel-body -->
+    </div> <!-- /.resend-panel -->
+  </div> <!-- /.row -->
+  <div class="row">
+    <div class="alternate-links text-center">
+      <%= render "devise/shared/links" %>
+    </div> <!-- /.alternate-links -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->

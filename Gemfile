@@ -34,8 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'figaro'
-gem 'rack-timeout'
+gem 'rack-timeout-puma'
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'devise', '~> 3.5'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
@@ -53,4 +55,5 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'shoulda-matchers'
 end

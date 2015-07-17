@@ -1,1 +1,3 @@
-Figaro.require_keys('SECRET_KEY_BASE', 'WEB_CONCURRENCY', 'MAX_THREADS')
+Figaro.require_keys('SECRET_KEY_BASE', 'WEB_CONCURRENCY', 'MAX_THREADS',
+                    'DEVISE_PEPPER', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET',
+                    'FACEBOOK_APP_ID', 'FACEBOOK_APP_SECRET')

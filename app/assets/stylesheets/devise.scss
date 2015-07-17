@@ -1,0 +1,24 @@
+// All scss for the devise controllers goes here
+#sign-up-panel,
+#log-in-panel,
+#resend-panel,
+#password-reset-panel {
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#or-seperator {
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+#or-text {
+  font-weight: bold;
+  margin-bottom: 0;
+  width: 35px;
+  position: relative;
+  background-color: #FFF;
+  margin-right: auto;
+  margin-left: auto;
+}
