@@ -12,4 +12,7 @@ AllCops:
     - 'config/environments/test.rb'
     - 'Rakefile'
     - 'Procfile'
+    - 'db/schema.rb'
+    - 'db/migrate/20150713183708_devise_create_users.rb'
+    - 'config/initializers/devise.rb'
 

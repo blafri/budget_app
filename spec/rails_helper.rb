@@ -9,6 +9,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'support/database_cleaner'
 require 'support/factory_girl'
+require 'shoulda/matchers'
+require 'support/omniauth_setup'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
