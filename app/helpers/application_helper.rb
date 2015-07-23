@@ -26,13 +26,8 @@ module ApplicationHelper
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }
                .join
 
-    html = <<-EOS
-<div class='alert alert-danger'>
-  <ul class='list-unstyled'>
-    #{messages}
-  </ul>
-</div>
-EOS
+    html = '<div class=\'alert alert-danger\'><ul class=\'list-unstyled\'>'\
+           "#{messages}</ul></div>"
 
     html.html_safe
   end

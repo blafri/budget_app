@@ -1,0 +1,24 @@
+// Clear current errors if they are any
+$( '#new_bank_account .form-errors' ).empty();
+$( '#new_bank_account .form-group' ).removeClass( 'has-error' );
+
+// Check if the account was saved successfully
+<% if @account.persisted? %>
+
+  // If it was saved reload the page
+  window.location.replace('<%= root_path %>');
+
+<% else %>
+
+  // Else display the errors
+  $( '#new_bank_account .form-errors' ).append( '<%= j(display_form_errors(@account)) %>' );
+
+  <% if @account.errors[:name].any? %>
+    $( '#new_bank_account #bank_account_name' ).parent().addClass( 'has-error' );
+  <% end %>
+
+  <% if @account.errors[:balance].any? %>
+    $( '#new_bank_account #bank_account_balance' ).parent().addClass( 'has-error' );
+  <% end %>
+
+<% end %>
