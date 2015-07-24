@@ -56,7 +56,7 @@ class BankAccountsController < ApplicationController
   #
   # Returns nothing.
   def find_bank_account
-    @account = BankAccount.find(params[:id])
+    @account = current_user.bank_accounts.find(params[:id])
   end
 
   def bank_account_params
