@@ -37,6 +37,7 @@ gem 'figaro'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise', '~> 3.5'
 gem 'omniauth-google-oauth2'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
@@ -55,4 +56,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
+  gem 'poltergeist'
 end

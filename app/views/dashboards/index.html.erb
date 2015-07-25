@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Budget Dashboard</h1>
+  </div>
+
+  <div class="row">
+    <div id="accounts-section" class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Bank Accounts</h3>
+          <div role="button" id="create-account-btn" class="panel-add-button" data-content-path="<%= new_bank_account_path %>" data-toggle="modal" data-target="#dashboard-modal">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </div>
+        </div>
+        <%= render partial: 'bank_accounts/bank_accounts_table', locals: { accounts: @accounts } %>
+      </div> <!-- /.panel -->
+    </div> <!-- /.accounts-section -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->
+
+<!-- Modal for creating a bank account -->
+<div id="dashboard-modal" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      </div> <!-- ./modal-body -->
+      <div id="modal-buttons" class="modal-footer">
+        <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div> <!-- /.modal-content -->
+  </div> <!-- /.modal-dialog -->
+</div> <!-- /#create-account-modal -->

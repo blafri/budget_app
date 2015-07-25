@@ -1,5 +1,7 @@
 # Public: Model class for user table
 class User < ActiveRecord::Base
+  has_many :bank_accounts
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,

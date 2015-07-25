@@ -1,0 +1,20 @@
+<%= form_for account, remote: true do |f| %>
+  <div class="form-errors">
+  </div> <!-- /.form-errors -->
+
+  <%= form_group_tag account.errors[:name] do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  <% end %>
+
+  <% if action_name == 'new' %>
+    <%= form_group_tag account.errors[:balance] do %>
+      <%= f.label :balance %>
+      <%= f.number_field :balance, step: '0.01', class: 'form-control' %>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit %>
+  </div>
+<% end %>
