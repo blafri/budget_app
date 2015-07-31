@@ -1,0 +1,23 @@
+// Set the title and the submit button text
+$( '#dashboard-modal .modal-title' ).empty();
+$( '#dashboard-modal .modal-title' ).append( 'Add Transaction to <%= @account.name %>' );
+$( '#dashboard-modal .modal-footer' ).append( '<button type="button" class="btn btn-primary btn-submit">Create Transaction</button>' );
+
+// Render the form
+$( '#dashboard-modal .modal-body .content' ).append( '<%= j(render partial: 'form', locals: { account: @account, trans: @trans, trans_type_arr: @trans_type_arr }) %>' );
+
+// Hide the forms submit button as they will use the modals button
+$( '#new_acct_transaction :submit' ).hide();
+
+// If the user clicks on the modals create account button submit the form
+$( '#dashboard-modal .btn-submit' ).on( 'click', function() {
+    $( '#new_acct_transaction' ).submit();
+    $( '#new_acct_transaction :input' ).prop( 'disabled', true );
+    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', true );
+});
+
+// setup a callback to enable the forms inputs and submit btn when the ajax request is completed
+$( '#new_acct_transaction' ).on( 'ajax:success', function() {
+    $( '#new_acct_transaction :input' ).prop( 'disabled', false );
+    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', false );
+});

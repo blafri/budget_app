@@ -17,15 +17,25 @@ $(function() {
 
         // set modal contents when modal is shown
         $modal.on( 'show.bs.modal', function (event) {
+            $( '#dashboard-modal .modal-title' ).append( '<h4>Loading</h4>' )
             var $button = $(event.relatedTarget)
-            $.getScript($button.data('content-path'));
+
+            $.getScript($button.data('content-path'), function( data, textStatus, jqxhr ) {
+
+                if ( jqxhr.status == 200 ) {
+                    $( '.modal-ajax-indicator' ).hide();
+                }
+
+            });
         });
 
         // reset modal when modal is hidden
         $modal.on( 'hidden.bs.modal', function() {
             $( '#dashboard-modal .modal-title' ).empty();
-            $( '#dashboard-modal .modal-body' ).empty();
+            $( '#dashboard-modal .modal-body .content' ).empty();
             $( '#dashboard-modal .btn-submit' ).remove();
+            $( '#dashboard-modal .btn-delete' ).remove();
+            $( '.modal-ajax-indicator' ).show();
         });
 
     }// End of if statement

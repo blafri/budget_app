@@ -1,9 +1,11 @@
 // Set the title and the submit button text
+$( '#dashboard-modal .modal-title' ).empty();
 $( '#dashboard-modal .modal-title' ).append( 'Edit Bank Account' );
-$( '#dashboard-modal .modal-footer' ).append( '<button type="button" class="btn btn-primary btn-submit">Edit Account</button>' );
+$( '#dashboard-modal .modal-footer' ).append( '<%= link_to 'Delete', @account, method: :delete, class: 'btn btn-danger btn-delete', role: 'button', data: { confirm: 'Are you sure you want to delete this bank account?' } %>' );
+$( '#dashboard-modal .modal-footer' ).append( '<button type="button" class="btn btn-primary btn-submit">Update</button>' );
 
 // Render the form
-$( '#dashboard-modal .modal-body' ).append( '<%= j(render partial: 'form', locals: { account: @account }) %>' );
+$( '#dashboard-modal .modal-body .content' ).append( '<%= j(render partial: 'form', locals: { account: @account }) %>' );
 
 // Hide the forms submit button as they will use the modals button
 $( '#edit_bank_account_<%= @account.id %> :submit' ).hide();
@@ -11,4 +13,14 @@ $( '#edit_bank_account_<%= @account.id %> :submit' ).hide();
 // If the user clicks on the modals create account button submit the form
 $( '#dashboard-modal .btn-submit' ).on( 'click', function() {
     $( '#edit_bank_account_<%= @account.id %>' ).submit();
+    $( '#edit_bank_account_<%= @account.id %> :input' ).prop( 'disabled', true );
+    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', true );
+    $( '#dashboard-modal .btn-delete' ).addClass( 'disabled' );
+});
+
+// setup a callback to enable the forms inputs and submit btn when the ajax request is completed
+    $( '#edit_bank_account_<%= @account.id %>' ).on( 'ajax:success', function() {
+    $( '#edit_bank_account_<%= @account.id %> :input' ).prop( 'disabled', false );
+    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', false );
+    $( '#dashboard-modal .btn-delete' ).removeClass( 'disabled' );
 });

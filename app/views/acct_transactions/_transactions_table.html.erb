@@ -1,0 +1,28 @@
+<% if transactions.empty? %>
+
+  <div class="content--panel__content">
+    <p>You have no transactions.</p>
+  </div>
+
+<% else %>
+
+  <div class="content--panel__content--table">
+    <table class="table">
+      <tr>
+        <th>Trans Type</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Links</th>
+      </tr>
+      <%= content_tag_for :tr, transactions do |trans| %>
+        <td><%= trans.trans_type.capitalize %></td>
+        <td><%= number_to_currency trans.amount %></td>
+        <td><%= truncate trans.description, length: 20 %></td>
+        <td>
+          <button role="button" class="btn btn-primary btn-xs" data-content-path="<%= edit_acct_transaction_path(trans) %>" data-toggle="modal" data-target="#dashboard-modal">View</button>
+        </td>
+      <% end %>
+    </table> <!-- /.table -->
+  </div> <!-- /.content--panel__content--table -->
+
+<% end %>

@@ -1,0 +1,11 @@
+<div id="accounts-section">
+  <div class="content-panel">
+    <div class="content-panel__heading">
+      <h3 class="content-panel__heading__title">Bank Accounts</h3>
+      <div role="button" id="create-account-btn" class="content-panel__heading__right-button" data-content-path="<%= new_bank_account_path %>" data-toggle="modal" data-target="#dashboard-modal">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </div>
+    </div> <!-- /.content-panel__heading -->
+    <%= render partial: 'bank_accounts/bank_accounts_table', locals: { accounts: @accounts } %>
+  </div> <!-- /.content-panel -->
+</div> <!-- /.accounts-section -->

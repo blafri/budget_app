@@ -41,7 +41,7 @@ class BankAccountsController < ApplicationController
       flash[:notice] = 'Bank account deleted successfully.'
     else
       flash[:error] = 'There was a problem deleting the bank account. Please '\
-                      'try again later'
+                      'try again later.'
     end
 
     respond_to do |format|
