@@ -15,9 +15,10 @@
 class AcctTransaction < ActiveRecord::Base
   belongs_to :bank_account
 
+  attr_reader :prev_trans_value
+
   validate :amount_must_be_greater_than_zero
 
-  validates :bank_account, :description, :trans_type, :amount, presence: true
   validates :bank_account, presence: true
   validates :description, presence: true
   validates :amount, presence: true, numericality: true
@@ -49,16 +50,11 @@ class AcctTransaction < ActiveRecord::Base
 
   # Public: Overwrite the default writer method for amount so that it will add
   # the current transaction value to an instance variable before updating it
-  # for traking the change. This instance variable is used when calling the
-  # method save_and_update_account so that when a transaction is updated you can
-  # calculate the difference between the old transaction value and the new one
-  # and update the account balance accordingly.
+  # for the purpose of traking the change.
   #
   # Returns nothing
   def amount=(value)
-    if new_record?
-      @prev_trans_value ||= BigDecimal(0)
-    else
+    unless new_record?
       @prev_trans_value ||= trans_amount
     end
 
@@ -77,6 +73,8 @@ class AcctTransaction < ActiveRecord::Base
   #
   # Returns a BigDecimal indicating the value of the transaction
   def trans_amount
+    return BigDecimal(0) unless amount
+
     case trans_type
     when 'debit'
       -amount
@@ -85,35 +83,7 @@ class AcctTransaction < ActiveRecord::Base
     end
   end
 
-  def save_and_update_account
-    self.class.transaction do
-      save!
-      bank_account.update_balance_by!(transaction_diff)
-    end
-
-  rescue ActiveRecord::RecordInvalid
-    false
-  end
-
-  def destroy_and_update_account
-    self.class.transaction do
-      destroy!
-      bank_account.update_balance_by!(-trans_amount)
-    end
-
-    destroyed?
-
-  rescue ActiveRecord::RecordNotDestroyed
-    false
-  end
-
   private
-
-  def transaction_diff
-    return BigDecimal(0) unless @prev_trans_value
-
-    trans_amount - @prev_trans_value
-  end
 
   # Internal: This validates that amount entered is greater than zero.
   #

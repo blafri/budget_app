@@ -4,7 +4,7 @@
 
   <div class="form-group">
     <%= f.label :trans_type %>
-    <%= f.select :trans_type, trans_type_arr, {}, class: 'form-control' %>
+    <%= f.select :trans_type, trans_type_arr, {}, class: 'form-control', disabled: params[:action] == 'edit' %>
   </div>
 
   <div class="form-group">
