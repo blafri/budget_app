@@ -27,9 +27,10 @@ class BankAccountsController < ApplicationController
 
   def update
     authorize @account
-    @result = @account.update(bank_account_params)
 
-    flash[:notice] = 'Account updated successfully.' if @result
+    if @account.update(bank_account_params)
+      flash[:notice] = 'Account updated successfully.'
+    end
 
     respond_to :js
   end

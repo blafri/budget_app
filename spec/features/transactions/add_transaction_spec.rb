@@ -15,7 +15,7 @@ feature 'Add transaction' do
       click_button 'Add Transaction'
       fill_in 'acct_transaction_amount', with: '900.29'
       fill_in 'acct_transaction_description', with: 'test transaction'
-      within('#modal-buttons') { click_button 'Create Transaction' }
+      within('#modal-buttons') { click_button 'Create' }
 
       expect(page).to have_content('Transaction created successfully.')
       expect(page).to have_css("#bank_account_#{account.id}", text: '9,660.82')
@@ -28,7 +28,7 @@ feature 'Add transaction' do
       select('Credit', :from => 'acct_transaction_trans_type')
       fill_in 'acct_transaction_amount', with: '900.29'
       fill_in 'acct_transaction_description', with: 'test transaction'
-      within('#modal-buttons') { click_button 'Create Transaction' }
+      within('#modal-buttons') { click_button 'Create' }
 
       expect(page).to have_content('Transaction created successfully.')
       expect(page).to have_css("#bank_account_#{account.id}", text: '11,461.40')
@@ -40,7 +40,7 @@ feature 'Add transaction' do
   scenario 'is unsuccessful with missing amount', js: true do
     click_button 'Add Transaction'
     fill_in 'acct_transaction_description', with: 'test transaction'
-    within('#modal-buttons') { click_button 'Create Transaction' }
+    within('#modal-buttons') { click_button 'Create' }
 
     expect(page).to have_content('Amount can\'t be blank')
     expect(AcctTransaction.count).to eq(0)
@@ -49,7 +49,7 @@ feature 'Add transaction' do
   scenario 'is unsuccessful with missing description', js: true do
     click_button 'Add Transaction'
     fill_in 'acct_transaction_amount', with: '900'
-    within('#modal-buttons') { click_button 'Create Transaction' }
+    within('#modal-buttons') { click_button 'Create' }
 
     expect(page).to have_content('Description can\'t be blank')
     expect(AcctTransaction.count).to eq(0)

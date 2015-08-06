@@ -24,12 +24,12 @@ class AcctTransaction < ActiveRecord::Base
   validates :amount, presence: true, numericality: true
   validates :trans_type, presence: true,
                          inclusion: { in: %w(debit credit),
-                                      message: "%{value} is not a valid "\
+                                      message: '%{value} is not a valid '\
                                                'transaction type.' }
 
   # Public: An array that can be used in forms with select boxes for the
   # user to select the type of transaction.
-  SELECT_BOX_TRANS_TYPE = [['Debit', 'debit'], ['Credit', 'credit']]
+  SELECT_BOX_TRANS_TYPE = [%w(Debit debit), %w(Credit credit)]
 
   # Public: Gets a list of all transactions for a list of accounts. The list of
   # transactions will be ordered from most recent to oldest.
@@ -54,9 +54,7 @@ class AcctTransaction < ActiveRecord::Base
   #
   # Returns nothing
   def amount=(value)
-    unless new_record?
-      @prev_trans_value ||= trans_amount
-    end
+    @prev_trans_value ||= trans_amount unless new_record?
 
     super
   end
@@ -89,8 +87,8 @@ class AcctTransaction < ActiveRecord::Base
   #
   # Returns nothing.
   def amount_must_be_greater_than_zero
-    if amount.present? && amount < 1
-      errors.add(:amount, "must be greater than 0")
-    end
+    return unless amount.present? && amount < 1
+
+    errors.add(:amount, 'must be greater than 0')
   end
 end

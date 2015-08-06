@@ -1,3 +1,4 @@
+# Public: Controller for acct_transaction routes
 class AcctTransactionsController < ApplicationController
   before_action :setup_trans_type_arr, only: [:new, :edit]
   before_action :find_bank_account, only: [:new, :create]
@@ -15,7 +16,7 @@ class AcctTransactionsController < ApplicationController
       .build(trans_params))
     authorize new_trans.transaction
 
-    if new_trans.create_transaction
+    if new_trans.create
       flash[:notice] = 'Transaction created successfully.'
     end
 
@@ -34,7 +35,7 @@ class AcctTransactionsController < ApplicationController
     trans.transaction.assign_attributes(trans_params)
     authorize trans.transaction
 
-    if @result = trans.update_transaction
+    if trans.update
       flash[:notice] = 'Transaction updated successfully.'
     end
 
@@ -46,11 +47,10 @@ class AcctTransactionsController < ApplicationController
     trans = BudgetApp::Transaction.new(AcctTransaction.find(params[:id]))
     authorize trans.transaction
 
-    if trans.destroy_transaction
+    if trans.destroy
       flash[:notice] = 'The transaction was deleted successfully.'
     else
-      flash[:error] = 'There was a problem deleting the transaction. Please '\
-                      'try again later.'
+      flash[:error] = 'There was a problem deleting the transaction.'
     end
 
     respond_to do |format|

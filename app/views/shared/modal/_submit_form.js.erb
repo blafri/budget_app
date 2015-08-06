@@ -1,0 +1,34 @@
+// This layout is used when the user submits the form in the modal. It will
+// check for errors and if they are any display them to the user. if no errors
+// are present it will reload the current page to show the changes.
+// This layout takes the following arguments
+//
+// form_id => The ID of the form we are submiting
+// resource => The object that is tring to be created or updated. We will use
+//             this object to see if they are any errors. if they are errors
+//             we will display them. If they are no errors the create/update
+//             was successful
+// path => Path to the page where the modal was called from.
+
+// Set needed variables
+var $form = $( '#<%= form_id %>' );
+
+// Clear current errors if they are any
+$form.find( '.form-errors' ).empty();
+$form.find( 'div' ).removeClass( 'has-error' );
+
+// Was the create/save call successful. We check if there are any errors
+<% if resource.errors.any? %>
+
+  // If there are errors display them
+  $form.find( '.form-errors' ).html( '<%= j(display_form_errors(resource)) %>' );
+
+  // Also mark the inputs with error classes
+  <%= add_error_classes(resource) %>
+
+<% else %>
+
+  // Reload the page using javascript
+  window.location.replace( '<%= path %>' );
+
+<% end %>

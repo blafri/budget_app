@@ -1,28 +1,4 @@
-// Clear current errors if they are any
-$( '#edit_acct_transaction_<%= @trans.id %> .form-errors' ).empty();
-$( '#edit_acct_transaction_<%= @trans.id %> .form-group' ).removeClass( 'has-error' );
-
-// Check if the account was saved successfully
-<% if @result %>
-
-  // If it was saved reload the page
-  window.location.replace('<%= root_path %>');
-
-<% else %>
-
-  // Else display the errors
-  $( '#edit_acct_transaction_<%= @trans.id %> .form-errors' ).append( '<%= j(display_form_errors(@trans)) %>' );
-
-  <% if @trans.errors[:trans_type].any? %>
-    $( '#acct_transaction_trans_type' ).parent().addClass( 'has-error' );
-  <% end %>
-
-  <% if @trans.errors[:amount].any? %>
-    $( '#acct_transaction_amount' ).parent().addClass( 'has-error' );
-  <% end %>
-
-  <% if @trans.errors[:description].any? %>
-    $( '#acct_transaction_description' ).parent().addClass( 'has-error' );
-  <% end %>
-
-<% end %>
+<%= render partial: 'shared/modal/submit_form',
+           locals: { form_id: "edit_acct_transaction_#{@trans.id}",
+                     resource: @trans,
+                     path: root_path } %>

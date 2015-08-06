@@ -8,7 +8,7 @@ feature 'Edit tranaction' do
     let(:trans) { build(:acct_transaction, bank_account: account) }
 
     before do
-      BudgetApp::Transaction.new(trans).create_transaction
+      BudgetApp::Transaction.new(trans).create
       log_user_in user
       visit root_path
       click_button 'View'
@@ -43,7 +43,7 @@ feature 'Edit tranaction' do
     let(:trans) { build(:acct_transaction, bank_account: account, trans_type: 'credit') }
 
     before do
-      BudgetApp::Transaction.new(trans).create_transaction
+      BudgetApp::Transaction.new(trans).create
       log_user_in user
       visit root_path
       click_button 'View'

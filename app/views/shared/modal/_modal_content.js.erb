@@ -1,0 +1,47 @@
+// This layout is used when the user brings up the modal. It will set the modal
+// title and buttons then set the modal contents by yielding to the block you
+// pass to it. It will also setup all the javascript for button presses to
+// submit the form etc.
+//
+// This partial should recieve a the folowing arguments
+//   modal_title => Title for the modal
+//   button_text => Text for the submit button in the modal footer
+//   form_id => The id for the form
+//   resource => The object. this is only needed on edit actions for the delete
+//               link
+
+// Set variables
+var $modal = $( '#action-modal' );
+var $modalTitle = $modal.find( '.modal-title' );
+var $modalFooter = $modal.find( '.modal-footer' );
+
+// Set the title and the submit button text
+$modalTitle.html( '<%= modal_title %>' );
+<% if action_name == 'edit' %>
+  $modalFooter.append( '<%= link_to 'Delete', resource, method: :delete, class: 'btn btn-danger btn-delete', role: 'button', data: { confirm: 'Are you sure you want to delete this bank account?' } %>' );
+<% end %>
+$modalFooter.append( '<button type="button" class="btn btn-primary btn-submit"><%= button_text %></button>' );
+
+// Render the form
+// This will yield to the calling block which should render the form
+<%= yield %>
+
+// set form variable
+var $form = $( '#<%= form_id %>' )
+
+// Hide the forms submit button as they will use the modals button
+$form.find( ':submit' ).hide();
+
+// If the user clicks on the modals .btn-submit button submit the form
+$modal.find( '.btn-submit' ).on( 'click', function() {
+  $form.submit();
+  $form.find( ':input' ).prop( 'disabled', true );
+  $( this ).prop( 'disabled', true );
+});
+
+// setup a callback to enable the forms inputs and submit btn when the ajax
+// request is completed
+$form.on( 'ajax:success', function() {
+  $form.find( ':input' ).prop( 'disabled', false );
+  $modal.find( '.btn-submit' ).prop( 'disabled', false );
+});

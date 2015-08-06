@@ -1,7 +1,7 @@
 <% if accounts.empty? %>
   <div class="content--panel__content">
     <p>You have not added any bank accounts.</p>
-    <button role="button" class="btn btn-primary btn-block" data-content-path="<%= new_bank_account_path %>" data-toggle="modal" data-target="#dashboard-modal">
+    <button role="button" class="btn btn-primary btn-block" data-content-path="<%= new_bank_account_path %>" data-toggle="modal" data-target="#action-modal">
       Add Bank Account
     </button>
   </div>
@@ -19,9 +19,9 @@
         <td><%= number_to_currency account.balance %></td>
         <td>
           <span class="hidden-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-content-path="<%= edit_bank_account_path(account) %>" data-toggle="modal" data-target="#dashboard-modal">Edit</button> | 
+            <button type="button" class="btn btn-primary btn-xs" data-content-path="<%= edit_bank_account_path(account) %>" data-toggle="modal" data-target="#action-modal">Edit</button> | 
           </span>
-          <button type="button" class="btn btn-primary btn-xs" data-content-path="<%= new_bank_account_acct_transaction_path(account) %>" data-toggle="modal" data-target="#dashboard-modal">Add Transaction</button>
+          <button type="button" class="btn btn-primary btn-xs" data-content-path="<%= new_bank_account_acct_transaction_path(account) %>" data-toggle="modal" data-target="#action-modal">Add Transaction</button>
         </td>
       <% end %>
     </table> <!-- /.table -->

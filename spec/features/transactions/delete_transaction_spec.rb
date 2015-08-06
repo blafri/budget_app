@@ -8,7 +8,7 @@ feature 'Delete tranaction' do
     let(:trans) { build(:acct_transaction, bank_account: account) }
 
     before do
-      BudgetApp::Transaction.new(trans).create_transaction
+      BudgetApp::Transaction.new(trans).create
       log_user_in user
       visit root_path
       click_button 'View'
@@ -26,7 +26,7 @@ feature 'Delete tranaction' do
       allow_any_instance_of(AcctTransaction).to receive(:destroy).and_return(false)
       within('#modal-buttons') { click_link 'Delete' }
 
-      expect(page).to have_content('There was a problem deleting the transaction. Please try again later.')
+      expect(page).to have_content('There was a problem deleting the transaction.')
     end
   end
 
@@ -34,7 +34,7 @@ feature 'Delete tranaction' do
     let(:trans) { build(:acct_transaction, bank_account: account, trans_type: 'credit') }
 
     before do
-      BudgetApp::Transaction.new(trans).create_transaction
+      BudgetApp::Transaction.new(trans).create
       log_user_in user
       visit root_path
       click_button 'View'

@@ -1,23 +1,8 @@
-// Set the title and the submit button text
-$( '#dashboard-modal .modal-title' ).empty();
-$( '#dashboard-modal .modal-title' ).append( 'Add Bank Account' );
-$( '#dashboard-modal .modal-footer' ).append( '<button type="button" class="btn btn-primary btn-submit">Create Account</button>' );
+<%= render layout: 'shared/modal/modal_content',
+           locals: { modal_title: 'Add New Account',
+                     button_text: 'Create',
+                     form_id: 'new_bank_account' } do %>
 
-// Render the form
-$( '#dashboard-modal .modal-body .content' ).append( '<%= j(render partial: 'form', locals: { account: @account }) %>' );
+  $( '#action-modal .modal-body .content' ).html( '<%= j(render partial: 'form', locals: { account: @account }) %>' );
 
-// Hide the forms submit button as they will use the modals button
-$( '#new_bank_account :submit' ).hide();
-
-// If the user clicks on the modals create account button submit the form
-$( '#dashboard-modal .btn-submit' ).on( 'click', function() {
-    $( '#new_bank_account' ).submit();
-    $( '#new_bank_account :input' ).prop( 'disabled', true );
-    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', true );
-});
-
-// setup a callback to enable the forms inputs and submit btn when the ajax request is completed
-$( '#new_bank_account' ).on( 'ajax:success', function() {
-    $( '#new_bank_account :input' ).prop( 'disabled', false );
-    $( '#dashboard-modal .btn-submit' ).prop( 'disabled', false );
-});
+<% end %>

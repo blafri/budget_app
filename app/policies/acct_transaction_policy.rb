@@ -1,3 +1,4 @@
+# Public: Transaction Policy
 class AcctTransactionPolicy < ApplicationPolicy
   def new?
     user.present?
