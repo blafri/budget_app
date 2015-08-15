@@ -1,0 +1,8 @@
+<div id="recent-trans-section">
+  <div class="content-panel">
+    <div class="content-panel__heading">
+      <h3 class="content-panel__heading__title">Recent Transactions</h3>
+    </div> <!-- /.content-panel__heading -->
+    <%= render partial: 'acct_transactions/transactions_table', locals: { transactions: @transactions } %>
+  </div> <!-- /.content-panel -->
+</div> <!-- /.accounts-section -->

@@ -1,20 +1,11 @@
-// Place all the styles related to the dashboards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.dashboards {
-  .panel-heading {
-    position: relative;
-  }
+/******************************************************************************
+ * Dashboards controller styles
+ *****************************************************************************/
+#accounts-section {
+  @include make-sm-column(5);
+  @include make-sm-column-offset(1)
+}
 
-  .panel-add-button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 37px;
-    width: 40px;
-    border-left: 2px solid #DDD;
-    color: #777;
-    font-size: 20px;
-    padding: 6px 10px 7px;
-  }
+#recent-trans-section {
+  @include make-sm-column(6);
 }

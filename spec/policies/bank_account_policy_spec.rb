@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe BankAccountPolicy do
-
   let(:user) { create(:user) }
   let(:user_account) { build(:bank_account, user: user) }
 

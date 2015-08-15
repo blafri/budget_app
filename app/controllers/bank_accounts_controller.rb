@@ -27,9 +27,10 @@ class BankAccountsController < ApplicationController
 
   def update
     authorize @account
-    @result = @account.update(bank_account_params)
 
-    flash[:notice] = 'Account updated successfully.' if @result
+    if @account.update(bank_account_params)
+      flash[:notice] = 'Account updated successfully.'
+    end
 
     respond_to :js
   end
@@ -41,7 +42,7 @@ class BankAccountsController < ApplicationController
       flash[:notice] = 'Bank account deleted successfully.'
     else
       flash[:error] = 'There was a problem deleting the bank account. Please '\
-                      'try again later'
+                      'try again later.'
     end
 
     respond_to do |format|

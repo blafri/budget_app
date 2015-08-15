@@ -1,24 +1,4 @@
-// Clear current errors if they are any
-$( '#edit_bank_account_<%= @account.id %> .form-errors' ).empty();
-$( '#edit_bank_account_<%= @account.id %> .form-group' ).removeClass( 'has-error' );
-
-// Check if the account was saved successfully
-<% if @result %>
-
-  // If it was saved reload the page
-  window.location.replace('<%= root_path %>');
-
-<% else %>
-
-  // Else display the errors
-  $( '#edit_bank_account_<%= @account.id %> .form-errors' ).append( '<%= j(display_form_errors(@account)) %>' );
-
-  <% if @account.errors[:name].any? %>
-    $( '#edit_bank_account_<%= @account.id %> #bank_account_name' ).parent().addClass( 'has-error' );
-  <% end %>
-
-  <% if @account.errors[:balance].any? %>
-    $( '#edit_bank_account_<%= @account.id %> #bank_account_balance' ).parent().addClass( 'has-error' );
-  <% end %>
-
-<% end %>
+<%= render partial: 'shared/modal/submit_form',
+           locals: { form_id: "edit_bank_account_#{@account.id}",
+                     resource: @account,
+                     path: root_path } %>

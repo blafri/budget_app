@@ -1,0 +1,8 @@
+<%= render layout: 'shared/modal/modal_content',
+           locals: { modal_title: 'Add New Transaction',
+                     button_text: 'Create',
+                     form_id: 'new_acct_transaction' } do %>
+
+  $( '#action-modal .modal-body .content' ).html( '<%= j(render partial: 'form', locals: { account: @account, trans: @trans, trans_type_arr: @trans_type_arr }) %>' );
+
+<% end %>

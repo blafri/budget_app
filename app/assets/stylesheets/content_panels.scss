@@ -1,0 +1,46 @@
+/*------------------------------------------------------------------------------
+ * Content panel - Create panels to house your content
+------------------------------------------------------------------------------*/
+.content-panel {
+  @extend .panel;
+  @include panel-variant($panel-default-border, $panel-default-text, $panel-default-heading-bg, $panel-default-border);
+}
+
+.content-panel__heading {
+  @extend .panel-heading;
+  position: relative;
+}
+
+.content-panel__heading__title {
+  @extend .panel-title;
+}
+
+.content-panel__heading__right-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 37px;
+  width: 40px;
+  border-left: 2px solid #DDD;
+  color: #777;
+  font-size: 20px;
+  padding: 6px 10px 7px;
+
+  &:hover {
+    background-color: darken($panel-default-heading-bg, 10%);
+  }
+
+  &:active {
+    @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+}
+
+.content--panel__content {
+  @extend .panel-body;
+}
+
+.content--panel__content--table {
+  > .table {
+    margin-bottom: 0;
+  }
+}
