@@ -1,0 +1,32 @@
+<%= form_for account, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <div class="form-errors col-sm-4 col-sm-offset-4">
+      <%= display_form_errors account %>
+    </div>
+  </div>
+
+  <%= form_group_tag account.errors[:name] do %>
+    <%= f.label :name, class: 'col-sm-4 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Give the bank account a name.', autofocus: true %>
+    </div>
+  <% end %>
+
+  <% if @account.new_record? %>
+    <%= form_group_tag account.errors[:balance] do %>
+      <%= f.label :balance, class: 'col-sm-4 control-label' %>
+      <div class="col-sm-4">
+        <%= f.text_field :balance, class: 'form-control', placeholder: 'Current balance on the account.' %>
+        <span class="help-block">
+          This will add the current balance as an income for the current month
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-4">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

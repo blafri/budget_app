@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-center main-heading-margin-bottom">Bank Accounts</h2>
+  </div>
+
+  <div class="row">
+    <div id="accounts-section" class="col-sm-5">
+      <div class="content-panel">
+        <div class="content-panel__heading">
+          <h3 class="content-panel__heading__title">Bank Accounts</h3>
+          <%= link_to new_bank_account_path, class: 'content-panel__heading__right-button' do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <% end %>
+        </div> <!-- /.content-panel__heading -->
+        <%= render partial: 'accounts_table', locals: { accounts: @accounts } %>
+      </div> <!-- /.content-panel -->
+    </div> <!-- /.accounts-section -->
+  </div> <!-- /.row -->
+</div> <!-- /.container -->

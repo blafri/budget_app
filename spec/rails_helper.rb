@@ -11,6 +11,8 @@ require 'support/database_cleaner'
 require 'support/factory_girl'
 require 'shoulda/matchers'
 require 'support/omniauth_setup'
+require 'pundit/rspec'
+require 'support/log_in'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

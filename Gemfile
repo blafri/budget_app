@@ -37,6 +37,8 @@ gem 'figaro'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise', '~> 3.5'
 gem 'omniauth-google-oauth2'
+gem 'responders'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
