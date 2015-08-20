@@ -10,7 +10,7 @@ module NavBarHelper
   end
 
   def main_links
-    generate_nav_links([home_link])
+    generate_nav_links([home_link, bank_account_links])
   end
 
   private
@@ -28,15 +28,47 @@ module NavBarHelper
   def generate_nav_links(links)
     html = links.compact.map do |link_info|
       active = link_info[:active] ? 'active' : nil
-      content_tag :li, link_info[:html], class: active
+      dropdown = link_info[:dropdown] ? 'dropdown' : nil
+
+      if active || dropdown
+        content_tag :li, link_info[:html], class: [active, dropdown]
+      else
+        content_tag :li, link_info[:html]
+      end
     end
 
     html.join.html_safe
   end
 
-  # Internal: Generates info for the home link
+  # Internal: Generates the links for the bank accounts dropdown menu on the
+  # navbar.
   #
-  # Returns an Hash containing info to create the link
+  # Returns a Hash containing info to create the link.
+  def bank_account_links
+    return unless user_signed_in?
+
+    html = '<a href="#" class="dropdown-toggle" data-toggle="dropdown" '\
+           'role="button" aria-haspopup="true" aria-expanded="false">Bank '\
+           'Accounts <span class="caret"></span></a>'.html_safe
+
+    html += content_tag :ul, user_bank_account_links, class: 'dropdown-menu'
+
+    { html: html }
+  end
+
+  def user_bank_account_links
+    html = current_user.bank_accounts.map do |ba|
+      content_tag :li, link_to(ba.name, bank_account_path(ba))
+    end
+
+    html << content_tag(:li, link_to('Add New Account', new_bank_account_path))
+
+    html.join.html_safe
+  end
+
+  # Internal: Generates info for the home link.
+  #
+  # Returns an Hash containing info to create the link.
   def home_link
     path = root_path
     {

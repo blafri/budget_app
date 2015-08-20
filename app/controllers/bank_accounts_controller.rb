@@ -1,16 +1,19 @@
 # Public: Controller for bank accounts.
 class BankAccountsController < ApplicationController
+  respond_to :html
+
   before_action :authenticate_user!
 
-  after_action :verify_authorized, except: [:index]
+  after_action :verify_authorized
 
-  def index
-    @accounts = current_user.bank_accounts
-    respond_with @accounts
+  def show
+    @account = current_user.bank_accounts.find(params[:id])
+    authorize @account
+    respond_with @account
   end
 
   def new
-    @account = current_user.bank_accounts.build
+    @account = BankAccount.new
     authorize @account
     respond_with @account
   end
@@ -19,14 +22,14 @@ class BankAccountsController < ApplicationController
     @account = current_user.bank_accounts.build account_params
     authorize @account
     @account.save
-    respond_with @account, location: -> { bank_accounts_path }
+    respond_with @account
   end
 
   def destroy
     @account = current_user.bank_accounts.find(params[:id])
     authorize @account
     @account.destroy
-    respond_with @account
+    respond_with @account, location: -> { root_path }
   end
 
   private

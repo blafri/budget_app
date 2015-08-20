@@ -1,14 +1,18 @@
 # Public: Authorization policy for bank accounts controller.
 class BankAccountPolicy < ApplicationPolicy
   def new?
-    record.user == user
+    user.present?
   end
 
   def create?
-    new?
+    record.user == user
+  end
+
+  def update?
+    record.user == user
   end
 
   def destroy?
-    new?
+    create?
   end
 end
