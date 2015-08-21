@@ -1,5 +1,5 @@
-# Public: Default controller for all APIs
 module Api
+  # Public: Default controller for all APIs
   class BaseController < ApplicationController
     before_action :check_authenticated
 

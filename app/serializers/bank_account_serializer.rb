@@ -1,6 +1,7 @@
+# Public: Serializes a bank account object to json.
 class BankAccountSerializer < ActiveModel::Serializer
   include ActiveSupport::NumberHelper
-  
+
   attributes :id, :user_id, :name, :balance, :active, :formated_balance
 
   # Public: formats the balance with a $ sign as well as puting , every three

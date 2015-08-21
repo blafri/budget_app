@@ -39,7 +39,7 @@ gem 'devise', '~> 3.5'
 gem 'omniauth-google-oauth2'
 gem 'responders'
 gem 'pundit'
-gem 'ejs'
+gem 'react-rails', '~> 1.0'
 gem 'active_model_serializers', '~> 0.9.0'
 
 group :development, :test do
@@ -59,4 +59,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
+  gem 'pry'
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
 end

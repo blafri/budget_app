@@ -8,7 +8,7 @@ feature 'Add bank account' do
     visit new_bank_account_path
   end
 
-  scenario 'is successful' do
+  scenario 'is successful', js: true do
     fill_in 'bank_account_name', with: 'test name'
     fill_in 'bank_account_balance', with: 12.78
     click_button 'Create'

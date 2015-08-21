@@ -57,13 +57,20 @@ module NavBarHelper
   end
 
   def user_bank_account_links
-    html = current_user.bank_accounts.map do |ba|
-      content_tag :li, link_to(ba.name, bank_account_path(ba))
+    html = current_user.bank_accounts.map do |bank_account|
+      user_bank_account_link(bank_account)
     end
 
     html << content_tag(:li, link_to('Add New Account', new_bank_account_path))
 
-    html.join.html_safe
+    html.compact.join.html_safe
+  end
+
+  def user_bank_account_link(ba)
+    return unless ba.persisted?
+
+    content_tag :li, link_to(ba.name, bank_account_path(ba)),
+                id: "nav_bank_account_#{ba.id}"
   end
 
   # Internal: Generates info for the home link.

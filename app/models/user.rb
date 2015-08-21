@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :bank_accounts
+  has_many :incomes
+  has_many :buckets
 
   def self.from_omniauth(access_token)
     data = access_token.info
