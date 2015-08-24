@@ -60,6 +60,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
   gem 'pry'
-  gem 'poltergeist'
   gem 'selenium-webdriver'
+  gem 'headless'
 end

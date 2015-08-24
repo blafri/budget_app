@@ -12,7 +12,7 @@ require 'support/factory_girl'
 require 'shoulda/matchers'
 require 'support/omniauth_setup'
 require 'pundit/rspec'
-require 'capybara/poltergeist'
+require 'support/headless_js_setup'
 require 'support/log_in'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
