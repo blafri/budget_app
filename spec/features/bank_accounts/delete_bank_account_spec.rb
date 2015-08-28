@@ -6,12 +6,15 @@ feature 'Delete bank account' do
 
   before do
     log_user_in(user)
-    visit bank_accounts_path
+    visit bank_account_path(account)
   end
 
-  scenario 'is successful' do
-    click_link "del-account-#{account.id}"
+  scenario 'is successful', js: true do
+    accept_alert do
+      click_link "Delete Account"
+    end
+    
     expect(page).to have_content('Bank account was successfully deleted')
-    expect(page).not_to have_content(account.name)
+    expect(BankAccount.count).to eq(0)
   end
 end

@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require react
+//= require react_ujs
 //= require close_flash
+//= require bank_account/utils
+//= require components

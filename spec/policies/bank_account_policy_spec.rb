@@ -9,12 +9,8 @@ describe BankAccountPolicy do
   subject { described_class }
 
   permissions :new? do
-    it 'allows a user to create a bank account for himself' do
-      expect(subject).to permit(user, BankAccount.new(user: user))
-    end
-
-    it 'denies access if he is not the owner' do
-      expect(subject).not_to permit(user, BankAccount.new)
+    it 'allows a user to create a bank if he is signed in' do
+      expect(subject).to permit(user, BankAccount.new)
     end
   end
 
@@ -24,6 +20,16 @@ describe BankAccountPolicy do
     end
 
     it 'denies access if he is not the owner' do
+      expect(subject).not_to permit(user, account)
+    end
+  end
+
+  permissions :update? do
+    it 'allows a user to update his own bank account' do
+      expect(subject).to permit(user, my_account)
+    end
+
+    it 'denies access to update someone elses account' do
       expect(subject).not_to permit(user, account)
     end
   end

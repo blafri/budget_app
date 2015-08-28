@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
   root 'static_pages#welcome_page'
 
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :bank_accounts, only: [:show, :update] do
+        resources :acct_trans, except: [:index, :show, :new, :edit, :update, :destroy],
+                               shallow: true
+      end
+    end
+  end
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :bank_accounts, except: [:show, :edit, :update]
+  resources :bank_accounts, except: [:index, :edit, :update]
 end
