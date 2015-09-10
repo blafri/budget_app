@@ -7,7 +7,5 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
     it { should have_many(:bank_accounts) }
-    it { should have_many(:incomes) }
-    it { should have_many(:buckets) }
   end
 end
