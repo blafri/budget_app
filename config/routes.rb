@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :bank_accounts, only: [:show, :update] do
-        resources :acct_trans, except: [:index, :show, :new, :edit, :update, :destroy],
-                               shallow: true
-      end
+      resources :bank_accounts, only: [:show, :update]
     end
   end
 

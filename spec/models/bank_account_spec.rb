@@ -8,6 +8,7 @@ RSpec.describe BankAccount, type: :model do
 
   context 'associations' do
     it { should belong_to(:user) }
+    it { should have_many(:acct_trans).dependent(:destroy)}
   end
 
   context '#update_balance_by!' do

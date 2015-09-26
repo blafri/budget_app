@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'associations' do
-    it { should have_many(:bank_accounts) }
+    it { should have_many(:bank_accounts).dependent(:destroy) }
+    it { should have_many(:incomes) }
   end
 end
