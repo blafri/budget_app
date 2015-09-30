@@ -37,5 +37,12 @@ module Api
 
       render nothing: true, status: :unauthorized
     end
+
+    # Internal: Turns off the root node for the json serializers.
+    #
+    # Returns nothing.
+    def default_serializer_options
+      { root: false }
+    end
   end
 end

@@ -3,5 +3,18 @@
     <h2 class="text-center main-heading-margin-bottom">Account Details</h2>
   </div>
 
-  <%= react_component('BankAccount.AccoutView', account_to_json(@account)) %>
+  <div class="row">
+    <div class="col-sm-4">
+      <h4>Acount Details</h4>
+      <div id="account-details"></div>
+    </div>
+    <div class="col-sm-8">
+      <h4>Transactions</h4>
+    </div>
+  </div>
 </div> <!-- /.container -->
+
+<!-- Backbone ootstrap data for bank account -->
+<script>
+  BankAccount.bootstrapData = <%= BankAccountSerializer.new(@account).to_json(root: false).html_safe %>;
+</script>

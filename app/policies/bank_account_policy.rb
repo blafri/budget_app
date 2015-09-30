@@ -4,6 +4,10 @@ class BankAccountPolicy < ApplicationPolicy
     user.present?
   end
 
+  def show?
+    record.user == user
+  end
+
   def create?
     record.user == user
   end

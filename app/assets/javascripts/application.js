@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore-min
+//= require backbone-min
 //= require bootstrap-sprockets
-//= require react
-//= require react_ujs
+//= require_tree ./templates
+//= require_tree ./bank_accounts
 //= require close_flash
-//= require bank_account/utils
-//= require components
