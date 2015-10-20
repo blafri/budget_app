@@ -5,18 +5,18 @@ class BankAccountPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.user_id == user.id
   end
 
   def create?
-    record.user == user
+    record.user_id == user.id
   end
 
   def update?
-    record.user == user
+    record.user_id == user.id
   end
 
   def destroy?
-    create?
+    record.user_id == user.id
   end
 end

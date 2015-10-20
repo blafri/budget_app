@@ -7,6 +7,7 @@
     <div class="col-sm-4">
       <h4>Acount Details</h4>
       <div id="account-details"></div>
+      <%= link_to 'Delete Account', bank_account_path, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this account?' } %>
     </div>
     <div class="col-sm-8">
       <h4>Transactions</h4>

@@ -16,5 +16,9 @@
 //= require backbone-min
 //= require bootstrap-sprockets
 //= require_tree ./templates
-//= require_tree ./bank_accounts
+//= require bank_accounts/model
+//= require bank_accounts/view
+//= require bank_accounts/bank_account
+//= require transactions/model
+//= require transactions/collection
 //= require close_flash

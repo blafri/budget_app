@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :bank_accounts, only: [:show, :update]
+      resources :acct_trans, only: [:index]
     end
   end
 

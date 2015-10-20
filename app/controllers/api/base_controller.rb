@@ -7,8 +7,7 @@ module Api
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from ActiveRecord::RecordNotFound, with: :object_not_found
-
-    responders :http_cache
+    
     respond_to :json
 
     private

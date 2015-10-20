@@ -10,13 +10,13 @@ feature 'Edit account' do
   end
 
   scenario 'is successful', js: true do
-    click_button "Edit Account"
-    fill_in 'edit-account-name', with: 'new name'
-    click_button 'Update Account'
+    within('#display-account-name') do
+      find('.glyphicon-edit').click
+    end
+    fill_in 'new-acct-name', with: 'new acct name'
+    click_button 'Save'
 
-    expect(page).to have_content('new name')
-    click_link "Bank Accounts"
-    expect(page).to have_css("nav a", text: 'new name')
-    expect(BankAccount.first.name).to eq('new name')
+    expect(page).to have_content('new acct name')
+    expect(BankAccount.first.name).to eq('new acct name')
   end
 end
